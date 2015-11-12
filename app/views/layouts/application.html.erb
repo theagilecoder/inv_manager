@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>InvManager</title>
+  <title>Inv Manager</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 
-<%= yield %>
+  <div class="container" id="main">
 
+    <div class="navbar navbar-fixed-top navbar-default">
+      <div class="container">
+        
+        <a class="navbar-brand" href=""><%= image_tag("logo.png", alt: "My Logo") %></a>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="">Spage1</a></li>
+          <li><%= link_to "Spage2",'#' %></li>
+        </ul><!-- end nav left -->
+                   
+        <ul class="nav navbar-nav pull-right">
+          <li><a href="">One</a></li>
+          <li><a href="">Two</a></li>
+          <li><a href="">Three</a></li>
+        </ul><!-- end nav right -->
+                   
+      </div><!-- end navbar container -->
+    </div><!-- end navbar -->
+      
+    <%= yield %>
+      
+  </div><!-- end main container -->
+  
 </body>
 </html>
