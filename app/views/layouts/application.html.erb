@@ -14,15 +14,15 @@
     <div class="navbar navbar-fixed-top navbar-default">
       <div class="container">
         
-        <a class="navbar-brand" href=""><%= image_tag("logo.png", alt: "My Logo") %></a>
+        <a class="navbar-brand" href="/"><%= image_tag("logo.png", alt: "My Logo") %></a>
         <ul class="nav navbar-nav">
           <li class="active"><a href="">Ignore</a></li>
           <li><%= link_to "Ignore",'#' %></li>
         </ul><!-- end nav left -->
                    
         <ul class="nav navbar-nav pull-right">
-          <li><a href="">Home</a></li>
-          <li><a href="">Spage2</a></li>
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Spage2", spage2_path %></li>
           <li><a href="">Log In</a></li>
         </ul><!-- end nav right -->
                    
