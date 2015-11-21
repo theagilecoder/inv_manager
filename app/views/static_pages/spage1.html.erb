@@ -1,5 +1,9 @@
     <div class="jumbotron">
       <h1>Hello, World!</h1>
       <p>Welcome to the Home Page of your compact Inventory Management System.</p>
-      <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+      <% if logged_in? %>
+        <!--Do not show the Sign Up button-->
+      <% else %>
+        <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+      <% end %>
     </div>  
