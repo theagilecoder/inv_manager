@@ -1,1 +1,22 @@
-<br><br><br><br><%= @user.name %>, <%= @user.email %>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h3 style="margin-top: 90px">Items</h3>
+    <% if @user.items.any? %>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Item Code</th>
+            <th>Description</th>
+            <th>View</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <%= render @items %>
+        </tbody>
+      </table>
+      <%= will_paginate @items %>
+    <% end %>
+  </div>
+</div>
