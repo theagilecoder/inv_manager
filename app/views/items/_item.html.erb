@@ -3,4 +3,9 @@
   <td><%= item.item_code %></td>
   <td><%= item.description %></td>
   <td>Dashboard</td>
+  <td>
+    <% if current_user?(item.user) %>
+      <%= link_to "Delete Item", item, method: :delete, data: { confirm: "You sure?" } %>
+    <% end %>  
+  </td>
 <tr>
