@@ -50,3 +50,19 @@ body {
    User edit page
    -------------------------------------- */
 #useredit { margin-top: 90px; }
+
+
+/* --------------------------------------
+   Horizontal Rule
+   -------------------------------------- */
+hr.style-one {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+/* --------------------------------------
+   Single Item Creation Form
+   -------------------------------------- */
+.new_item .form-group { width: 110%; }   

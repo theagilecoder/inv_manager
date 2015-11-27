@@ -2,7 +2,8 @@ class Item < ActiveRecord::Base
   belongs_to :user
   validates :user_id, presence: true
   validates :item_code, presence: true, length: { maximum: 10 }
-  validates :description, presence: true, length: { maximum: 20 }
+  validates :description, presence: true, length: { maximum: 10 }
+=begin  
   validates :cost, presence: true
   validates :location, presence: true, length: { maximum: 10 }
   validates :uom, presence: true, length: { maximum: 10 }
@@ -43,5 +44,6 @@ class Item < ActiveRecord::Base
   validates :safety_stock_1, presence: true
   validates :safety_stock_2, presence: true
   validates :safety_stock_3, presence: true
-  
+=end  
+
 end

@@ -6,7 +6,7 @@
     <h1 style="margin-bottom: 30px">Sign Up</h1>
     <%= form_for(@user) do |f| %>
       
-      <%= render 'shared/error_messages' %>
+      <%= render 'shared/error_messages', object: f.object %>
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>

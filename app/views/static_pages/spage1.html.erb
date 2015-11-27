@@ -1,9 +1,50 @@
-    <div class="jumbotron">
-      <h1>Hello, World!</h1>
-      <p>Welcome to the Home Page of your compact Inventory Management System.</p>
-      <% if logged_in? %>
-        <!--Do not show the Sign Up button-->
-      <% else %>
-        <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-      <% end %>
-    </div>  
+<!-- Home Page
+=================-->
+
+<% if logged_in? %>
+  <h3 style="margin-top: 90px"></h3>
+  
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4" >
+      <button style="margin-top: 90px" type="button" class="btn btn-primary btn-lg btn-block"><p><span class="glyphicon glyphicon-upload"></span> Upload Multiple Entries</p><small>(*.xlsx, *.xls, *.csv)</small></button>
+    </div>
+  </div>
+  
+  <hr class="style-one" style="margin-top: 90px">
+  
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4" >
+      <a href="#myModal" style="margin-top: 90px" role="button" class="btn btn-info btn-lg btn-block" data-toggle="modal"><p><span class="glyphicon glyphicon-hand-up"></span> Save Single Entry</p></a>
+    </div>
+  </div>
+  
+  <%= render 'shared/item_form' %>
+  
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <button class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Item Creation Form</h4>
+        </div><!-- end modal header-->
+        
+        <div class="modal-body">
+          <%= render 'shared/item_form' %>
+        </div><!-- end modal body-->
+        
+        <div class="modal-footer">
+          <p><small class="text-muted">Powered by Cognizant Technology Solutions&trade;</small></p>
+        </div><!-- end modal footer-->
+      
+      </div><!-- end modal content-->
+    </div><!-- end modal dialog-->
+  </div><!-- end modal -->
+
+<% else %>
+<div class="jumbotron">
+  <h1>Hello, World!</h1>
+  <p>Welcome to the Home Page of your compact Inventory Management System.</p>
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+</div>
+<% end %>
