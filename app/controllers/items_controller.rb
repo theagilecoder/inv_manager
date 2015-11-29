@@ -25,6 +25,13 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @item = Item.find(params[:id])
+    if @item.user_id != current_user.id #If a user is trying to view the show page of an item that doesn't belong to him, take him to Home page
+      render 'static_pages/spage1'
+    end  
+  end
+  
   def destroy
     @item.destroy
     flash[:success] = "Item deleted"
