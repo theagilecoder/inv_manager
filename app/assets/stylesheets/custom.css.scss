@@ -78,3 +78,27 @@ hr.style-one {
 #exportPanels h4 { margin: 0 0 0; }
 
 #exportPanels .panel-heading { padding: 8 0 8; }
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.footer img { margin-top: 7px; }
