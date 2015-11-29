@@ -2,6 +2,19 @@ class ItemsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
 
+  def index
+    @items = current_user.items
+    respond_to do |format|
+      format.html
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename=\"item-list.csv\""
+        headers['Content-Type'] ||= 'text/csv'
+      end
+      format.json {  render json: @items}
+      format.xml {  render xml: @items}
+    end  
+  end
+  
   def create
     @item = current_user.items.build(item_params)
     if @item.save

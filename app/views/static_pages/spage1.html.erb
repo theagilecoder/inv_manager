@@ -40,6 +40,59 @@
       </div><!-- end modal content-->
     </div><!-- end modal dialog-->
   </div><!-- end modal -->
+  
+  <hr class="style-one" style="margin-top: 90px">
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Export Your Inventory</h2>
+      <p class="lead">Insight&trade; comes with a strong suite of Export 
+      mediums right out of the box ranging from Microsoft Excel&trade; 
+      supported CSV format as well as Industry standard JSON and XML formats to
+      make inter-application communication easier through APIs</p>
+    </div><!-- end col-md-12 -->
+  </div><!-- end row -->
+  
+  <div class="row" id="exportPanels">
+    <div class="col-md-4 feature">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>View on Local System</h4>
+        </div><!-- end panel-heading -->
+        <div class="panel-body">
+          <%= image_tag("CSV.jpg", alt: "CSV", class: "img-circle") %>
+          <p>View all inventory items, its attributes and important statistics quickly in an easy to handle Excel supported CSV file.</p>
+          <a href="/items.csv" class="btn btn-warning btn-block">Download CSV File</a>
+        </div><!-- end panel body -->
+      </div><!-- end panel -->
+    </div><!-- end col-4 -->
+    
+    <div class="col-md-4 feature">  
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>Connect with API</h4>
+        </div><!-- end panel-heading -->
+        <div class="panel-body">
+          <%= image_tag("JSON.jpg", alt: "JSON", class: "img-circle") %>
+          <p>JSON is the industry standard data interchange format which makes it easy to connect InSight&trade; with other Supply Chain apps such as OMS and WMS.</p>
+          <a href="/items.json" target="_blank" class="btn btn-primary btn-block">Use JSON</a>
+        </div><!-- end panel body -->
+      </div><!-- end panel -->
+    </div><!-- end col-4 -->
+    
+    <div class="col-md-4 feature"> 
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>Connect with API</h4>
+        </div><!-- end panel-heading -->
+        <div class="panel-body">
+          <%= image_tag("XML.jpg", alt: "XML", class: "img-circle") %>
+          <p><br>Alternatively, connect InSight&trade; with your legacy applications using XML based Inventory feed.</p>
+          <a href="/items.xml" target="_blank" class="btn btn-danger btn-block">Use XML</a>
+        </div><!-- end panel body -->
+      </div><!-- end panel -->
+    </div><!-- end <col-md-4></col-md-4> -->
+  </div><!-- end row -->
 
 <% else %>
 <div class="jumbotron">
