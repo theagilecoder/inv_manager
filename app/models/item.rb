@@ -77,7 +77,7 @@ class Item < ActiveRecord::Base
   def calculate_all_values
     
     self.mape = (((self.as1-self.hf1).abs + (self.as2-self.hf2).abs + (self.as3-self.hf3).abs + (self.as4-self.hf4).abs + (self.as5-self.hf5).abs + (self.as6-self.hf6).abs).to_f/(as1 + as2 + as3 + as4 + as5 + as6)).round(3) 
-    self.bias = (((self.as1-self.hf1) + (self.as2-self.hf2) + (self.as3-self.hf3) + (self.as4-self.hf4) + (self.as5-self.hf5) + (self.as6-self.hf6)).to_f/(as1 + as2 + as3 + as4 + as5 + as6)).round(3)
+    self.bias = (((self.hf1-self.as1) + (self.hf2-self.as2) + (self.hf3-self.as3) + (self.hf4-self.as4) + (self.hf5-self.as5) + (self.hf6-self.as6)).to_f/(as1 + as2 + as3 + as4 + as5 + as6)).round(3)
     self.supply_uncertainty = ((self.ordered_quantity - self.actual_quantity).to_f/self.ordered_quantity).round(3)
     self.transit_time_variability = ((self.lead_time_variability).to_f/self.lead_time).round(3)
     
