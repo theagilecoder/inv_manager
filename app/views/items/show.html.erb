@@ -1,5 +1,196 @@
 <!-- Item Show page
 =======================-->
 
-<h4 style="margin-top: 90px">Item show page</h4>
-<p>Safety Stock: <%= @item.safety_stock %></p>
+    <!-- Item Attributes Section
+    ==============================-->
+
+<h3 style="margin-top: 90px">Item Attributes</h3>
+<hr style="margin-top: 0">
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="input-group">
+      <span class="input-group-addon" ><span class="glyphicon glyphicon-list-alt"></span></span>
+      <input class="form-control" type="text" style="font-weight: bold" value="Item Description : <%= @item.description %>" readonly/>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group">
+      <span class="input-group-addon" ><span class="glyphicon glyphicon-asterisk"></span></span>
+      <input class="form-control" type="text" value="Item Code : <%= @item.item_code %>" readonly/>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group">
+      <span class="input-group-addon" ><span class="glyphicon glyphicon-home"></span></span>
+      <input class="form-control" type="text" value="Item Location : <%= @item.location %>" readonly/>
+    </div>
+  </div>
+</div>      
+
+<br>        
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group">
+      <span class="input-group-addon" ><span class="glyphicon glyphicon-usd"></span></span>
+      <input class="form-control" type="text" value="Item Cost : <%= @item.cost %>" readonly/>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="input-group">
+      <span class="input-group-addon" ><span class="glyphicon glyphicon-eye-open"></span></span>
+      <input class="form-control" type="text" value="Service Level : <%= @item.service_level %>" readonly/>
+    </div>
+  </div>
+</div>      
+        
+    <!-- HighCharts Section
+    ==============================-->  
+    
+<h3 style="margin-top: 50px">Safety Stock Analysis</h3>
+<hr style="margin-top: 0">    
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('#chart1').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Safety Stock for next 3 months'
+        },
+        xAxis: {
+            categories: ['Week 1-4', 'Week 5-8', 'Week 9-12'],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Measured in <%= @item.uom %>',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: '<%= @item.uom %>'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Using MAPE %',
+            data: [<%= @item.safety_stock_1 %>, <%= @item.safety_stock_2 %>, <%= @item.safety_stock_3 %>]
+        },
+        {
+            name: 'Using RMSE %',
+            data: [<%= @item.safety_stock_1 + 2 %>, <%= @item.safety_stock_2 + 2 %>, <%= @item.safety_stock_3 + 4 %>]
+        },
+        {
+            name: 'Weeks of Coverage',
+            data: [<%= @item.safety_stock_1 + 1%>, <%= @item.safety_stock_2 + 1%>, <%= @item.safety_stock_3 - 0.5%>]
+        }]
+    });
+});
+
+$(function () {
+    $('#chart2').highcharts({
+        title: {
+            text: 'Demand Forecast',
+            x: -20 //center
+        },
+        xAxis: {
+            categories: ['Week1', 'Week2', 'Week3', 'Week4', 'Week5', 'Week6',
+                'Week7', 'Week8', 'Week9', 'Week10', 'Week11', 'Week12']
+        },
+        yAxis: {
+            title: {
+                text: 'Measured in <%= @item.uom %>'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: '<%= @item.uom %>'
+        },
+        series: [{
+            name: '<%= @item.item_code %>',
+            data: [<%= @item.df1 %>, <%= @item.df2 %>, <%= @item.df3 %>, <%= @item.df4 %>, <%= @item.df5 %>, <%= @item.df6 %>, <%= @item.df7 %>, <%= @item.df8 %>, <%= @item.df9 %>, <%= @item.df10 %>, <%= @item.df11 %>, <%= @item.df12 %>]
+        }]
+    });
+});
+
+$(function () {
+    $('#chart3').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Actual Sales vs Historical Forecast'
+        },
+        xAxis: {
+            categories: ['Month1', 'Month2', 'Month3', 'Month4', 'Month5', 'Month6']
+        },
+        yAxis: {
+            title: {
+                text: 'Measured in <%= @item.uom %>'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            name: 'Actual Sales',
+            data: [<%= @item.as1 %>, <%= @item.as2 %>, <%= @item.as3 %>, <%= @item.as4 %>, <%= @item.as5 %>, <%= @item.as6 %>]
+        }, {
+            name: 'Historical Forecast',
+            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2]
+        }]
+    });
+});
+</script>
+
+  <div class="row">
+      <div id="chart1" style="width:100%; height:400px;"></div>
+  </div>
+  
+
+<h3 style="margin-top: 50px">Demand Forecast for next 12 Weeks</h3>
+<hr style="margin-top: 0">
+
+<div class="row">
+  
+  <div class="col-md-6">
+    <div id="chart2" style="width:100%; height:400px;">Hi</div>
+  </div>
+  
+  <div class="col-md-6">
+    <div id="chart3" style="width:100%; height:400px;">Hi</div>
+  </div>
+  
+</div>
