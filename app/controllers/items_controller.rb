@@ -18,10 +18,10 @@ class ItemsController < ApplicationController
   def create
     @item = current_user.items.build(item_params)
     if @item.save
-      flash[:success] = "Inventory Item created!"
-      redirect_to root_url
+      flash[:success] = "Inventory Item created. View Analysis below."
+      redirect_to item_path(@item)
     else
-      render 'static_pages/spage1'
+      render 'static_pages/spage2'
     end
   end
 
