@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Inv Manager</title>
+  <title>InSight&trade;</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'cognizant_favicon.ico' %>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
 </head>
 
@@ -26,9 +27,8 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> My Account <b class="caret"></b></a>
             <ul class="dropdown-menu">
 								<li><a><small> Logged in as</small><br><strong><%= current_user.name %></strong></a></li>
-								<li class="divider"></li>
-								<li><%= link_to '<i class="glyphicon glyphicon-wrench"></i> Profile'.html_safe, current_user %></li>									
-								<li><%= link_to '<i class="glyphicon glyphicon-refresh"></i> Settings'.html_safe, edit_user_path(current_user) %></li>									
+								<li class="divider"></li>									
+								<li><%= link_to '<i class="glyphicon glyphicon-refresh"></i> Your Account'.html_safe, edit_user_path(current_user) %></li>									
 								<li><a href="#"><span class="glyphicon glyphicon-briefcase"></span> Billing</a></li>									
 								<li class="divider"></li>									
 								<li><%= link_to '<i class="glyphicon glyphicon-off"></i> Logout'.html_safe, logout_path, method: "delete" %></li>
