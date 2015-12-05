@@ -32,6 +32,20 @@ class ItemsController < ApplicationController
     end  
   end
   
+  def edit
+    @item = Item.find(params[:id])
+  end
+  
+  def update
+    @item = Item.find(params[:id])
+    if @item.update_attributes(item_params)
+      flash[:success] = "Item Attributes updated"
+      redirect_to @item
+    else
+      render 'edit'
+    end
+  end
+  
   def destroy
     @item.destroy
     flash[:success] = "Item deleted"

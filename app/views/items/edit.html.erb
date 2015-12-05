@@ -1,0 +1,219 @@
+<h3 style="margin-top: 90px">Edit Inventory Item</h3>
+<hr style="margin-top: 0; margin-bottom: 60px;">
+
+<%= form_for(@item) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+    
+    <!-- Section 1. Item Information -->
+    
+    <h4>Section 1. Item Information</h4>
+    <hr style="margin-top: 0"> 
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.text_field :item_code, class: "form-control", placeholder: "Item Code (Must be unique)" %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.text_field :description, class: "form-control", placeholder: "Description" %>
+        </div> 
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.text_field :location, class: "form-control", placeholder: "Location" %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.text_field :uom, class: "form-control", placeholder: "Unit of measure (eg. eaches, lbs, kgs)" %>
+        </div>
+      </div>
+    </div><!--First row -->
+    
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.number_field :cost, class: "form-control", placeholder: "Cost (in Dollars)", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.number_field :service_level, class: "form-control", placeholder: "Service Level (must be 0<p>1)", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.number_field :lead_time, class: "form-control", placeholder: "Lead Time (in Days)", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.number_field :lead_time_variability, class: "form-control", placeholder: "Lead Time Variability (in Days)", step: "any" %>
+        </div> 
+      </div>
+    </div><!--Second row -->
+    
+    <!-- Section 2. Demand Forecast -->
+    
+    <h4>Section 2. Demand Forecast for 12 Weeks</h4>
+    <hr style="margin-top: 0">
+    
+    <div class-"row">
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :df1, class: "form-control", placeholder: "Week 1", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :df2, class: "form-control", placeholder: "Week 2", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :df3, class: "form-control", placeholder: "Week 3", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :df4, class: "form-control", placeholder: "Week 4", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :df5, class: "form-control", placeholder: "Week 5", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :df6, class: "form-control", placeholder: "Week 6", step: "any" %>
+        </div>
+      </div>
+    </div><!-- end First row -->
+    
+    <div class-"row">
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :df7, class: "form-control", placeholder: "Week 7", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :df8, class: "form-control", placeholder: "Week 8", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :df9, class: "form-control", placeholder: "Week 9", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :df10, class: "form-control", placeholder: "Week 10", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :df11, class: "form-control", placeholder: "Week 11", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :df12, class: "form-control", placeholder: "Week 12", step: "any" %>
+        </div>
+      </div>
+    </div><!-- end Second row -->
+    
+    <!-- Section 3. Historical Data -->
+    
+    <h4>Section 3. Historical Sales Data</h4>
+    <hr style="margin-top: 0">
+    
+    <div class="row">
+      <div class="col-md-2">  
+        <div class="form-group">
+          <%= f.number_field :as1, class: "form-control", placeholder: "A. Sales Month 1", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :as2, class: "form-control", placeholder: "A. Sales Month 2", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :as3, class: "form-control", placeholder: "A. Sales Month 3", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :as4, class: "form-control", placeholder: "A. Sales Month 4", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :as5, class: "form-control", placeholder: "A. Sales Month 5", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :as6, class: "form-control", placeholder: "A. Sales Month 6", step: "any" %>
+        </div>
+      </div>
+    </div><!-- end first row -->
+    
+    <div class="row">
+      <div class="col-md-2">  
+        <div class="form-group">
+          <%= f.number_field :hf1, class: "form-control", placeholder: "H. Forecast Month 1", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :hf2, class: "form-control", placeholder: "H. Forecast Month 2", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :hf3, class: "form-control", placeholder: "H. Forecast Month 3", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :hf4, class: "form-control", placeholder: "H. Forecast Month 4", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :hf5, class: "form-control", placeholder: "H. Forecast Month 5", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :hf6, class: "form-control", placeholder: "H. Forecast Month 6", step: "any" %>
+        </div>
+      </div>
+    </div><!-- end Section 3. Historical Sales Data -->
+    
+    <!-- Section 4. Supply -->
+    
+    <h4>Section 4. Supply</h4>
+    <hr style="margin-top: 0">
+    
+    <div class="row">
+      <div class="col-md-2">  
+        <div class="form-group">
+          <%= f.number_field :ordered_quantity, class: "form-control", placeholder: "Ordered Quantity", step: "any" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.number_field :actual_quantity, class: "form-control", placeholder: "Actual Quantity", step: "any" %>
+        </div>
+      </div>
+    </div><!-- end Section 4. Supply -->
+    
+    <%= f.submit "Save Entry", class: "btn btn-primary" %>
+<% end %>

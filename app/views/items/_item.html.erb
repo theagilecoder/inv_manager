@@ -1,8 +1,10 @@
+
 <tr>
-  <td><%= item.id %></td>
+  <td></td>
   <td><%= item.item_code %></td>
   <td><%= item.description %></td>
   <td><%= link_to "Dashboard", item_path(item) %></td>
+  <td><%= link_to "Edit", edit_item_path(item) %></td>
   <td>
     <% if current_user?(item.user) %>
       <%= link_to "Delete Item", item, method: :delete, data: { confirm: "You sure?" } %>
