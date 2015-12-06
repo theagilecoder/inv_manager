@@ -1,6 +1,7 @@
 class Item < ActiveRecord::Base
   belongs_to :user
   before_create :calculate_all_values
+  before_update :calculate_all_values
   
   validates :user_id, presence: true
   validates :item_code, presence: true, length: { maximum: 10 }
