@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'cognizant_favicon.ico' %>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -24,7 +25,7 @@
         <ul class="nav navbar-nav pull-right">
         <% if logged_in? %>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> My Account <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
             <ul class="dropdown-menu">
 								<li><a><small> Logged in as</small><br><strong><%= current_user.name %></strong></a></li>
 								<li class="divider"></li>									
@@ -35,7 +36,7 @@
 						</ul>
           </li>  
         <% else %>
-          <li class="active"><%= link_to '<i class="glyphicon glyphicon-user"></i> Login'.html_safe, login_path %></li>
+          <li><%= link_to "Login", login_path %></li>
         <% end %>
         </ul><!-- end nav right -->
                    
@@ -52,7 +53,14 @@
 
   <footer class="footer">
     <div class="container">
-      <%= image_tag("Cognizant3.png", alt: "Cognizant Logo", align: "right") %>
+      <div class="col-md-6">
+        <p class="copyright text-muted small">Copyright &copy; Cognizant Technology Solutions. All Rights Reserved</p>
+      </div>
+      <div class="col-md-6">
+        <%= image_tag("Cognizant3.png", alt: "Cognizant Logo", align: "right") %>
+      </div>
+      
+      
     </div>  
   </footer>
 </body>

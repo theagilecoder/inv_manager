@@ -12,6 +12,12 @@ body {
 
 
 /* --------------------------------------
+   navbar
+   -------------------------------------- */
+.navbar { font-family: "Lato","Helvetica Neue"; font-weight: 700; }   
+   
+
+/* --------------------------------------
    Jumbotron Home Page
    -------------------------------------- */
 .jumbotron { margin-top: 90px; }
@@ -67,6 +73,7 @@ hr.style-one {
    -------------------------------------- */
 .new_item .form-group { width: 110%; }   
 
+
 /* --------------------------------------
    Single Item Edit Form
    -------------------------------------- */
@@ -77,11 +84,8 @@ hr.style-one {
    Home Page Export Section
    -------------------------------------- */
 #exportPanels { text-align: center; margin-top: 20px; }
-
 #exportPanels img{ margin: 0 0 20px; }
-
 #exportPanels h4 { margin: 0 0 0; }
-
 #exportPanels .panel-heading { padding: 8 0 8; }
 
 
@@ -103,10 +107,13 @@ body {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
-  background-color: #BDBDBD;
+  background-color: #f8f8f8;
 }
 
 .footer img { margin-top: 7px; }
+
+.copyright { font-family: "Lato","Helvetica Neue"; font-weight: 700; margin-top: 20px;}
+
 
 /* --------------------------------------
    Thumbnail in Dashboard Section
@@ -122,7 +129,6 @@ body {
    Item Attributes in Dashboard Page
    -------------------------------------- */
 #itemAttrib { text-align: center; margin-top: 90px }
-
 #itemAttrib1 { background-color: #337ab7; color: white; font-weight: bold; height: 113px;}
 #itemAttrib2 { background-color: #5cb85c; color: white; font-weight: bold;}
 #itemAttrib3 { background-color: #f0ad4e; color: white; font-weight: bold;}
