@@ -14,7 +14,7 @@ body {
 /* --------------------------------------
    navbar
    -------------------------------------- */
-.navbar { font-family: "Lato","Helvetica Neue"; font-weight: 700; }   
+.navbar { font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif; font-weight: 700; }   
    
 
 /* --------------------------------------
@@ -112,7 +112,7 @@ body {
 
 .footer img { margin-top: 7px; }
 
-.copyright { font-family: "Lato","Helvetica Neue"; font-weight: 700; margin-top: 20px;}
+.copyright { font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif; font-weight: 700; margin-top: 20px;}
 
 
 /* --------------------------------------
@@ -133,3 +133,98 @@ body {
 #itemAttrib2 { background-color: #5cb85c; color: white; font-weight: bold;}
 #itemAttrib3 { background-color: #f0ad4e; color: white; font-weight: bold;}
 #itemAttrib4 { background-color: #d9534f; color: white; font-weight: bold;}
+
+
+/* --------------------------------------
+   Landing Page
+   -------------------------------------- */
+.intro-header {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: image-url("intro-bg.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+.intro-message {
+    position: relative;
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 5em;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif; font-weight: 700; margin-top: 20px;
+}
+
+.intro-divider {
+    width: 500px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif; font-weight: 700; margin-top: 20px;
+}
+
+.network-name {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.content-section-a {
+    padding: 50px 0;
+    background-color: #f8f8f8;
+}
+
+.content-section-b {
+    padding: 50px 0;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif; font-weight: 700; margin-top: 20px;
+}
+
+.section-heading-spacer {
+    float: left;
+    width: 200px;
+    border-top: 3px solid #e7e7e7;
+}
+
+.banner {
+    padding: 100px 0;
+    color: #f8f8f8;
+    background: image-url("banner-bg.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+.banner h2 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 3em;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif; font-weight: 700;
+}
+
+.banner ul {
+    margin-bottom: 0;
+}
+
+.banner-social-buttons {
+    float: right;
+    margin-top: 0;
+}
+
+.lead {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif; margin-top: 20px;
+}

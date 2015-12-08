@@ -43,7 +43,7 @@
         <div class="caption">
           <h3>View and Manage Inventory Items</h3>
           <p>View Inventory snapshot as well as manage Items by editing Item attributes or deleting them.</p>
-          <%= link_to "View Inventory", current_user, :class => "btn btn-primary" %>
+          <%= link_to "View Inventory", current_user, :class => "btn btn-primary btn-block" %>
         </div>
       </div>
     </div>
@@ -54,7 +54,7 @@
         <div class="caption">
           <h3>View Item Dashboard</h3>
           <p>Visually take stock of Inventory Items indivisually and Analyze important Inventory attributes.</p>
-          <%= link_to "View Dashboard", item_path(@item1), :class => "btn btn-success" %>
+          <%= link_to "View Dashboard", item_path(@item1), :class => "btn btn-success btn-block" %>
         </div>
       </div>
     </div>
@@ -123,9 +123,5 @@
 ======================================-->
 
 <% else %>
-<div class="jumbotron">
-  <h1>Hello, World!</h1>
-  <p>Welcome to the Home Page of your compact Inventory Management System.</p>
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-</div>
+<%= render 'shared/landing_page' %>
 <% end %>

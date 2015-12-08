@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>InSight&trade;</title>
+  <title>InSight</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <%= favicon_link_tag 'cognizant_favicon.ico' %>
+  <!--<%= favicon_link_tag 'cognizant_favicon.ico' %>-->
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -17,10 +18,13 @@
     <div class="navbar navbar-fixed-top navbar-default">
       <div class="container">
         
-        <a class="navbar-brand" href="/"><%= image_tag("logo.png", alt: "My Logo") %></a>
-        <ul class="nav navbar-nav">
-          <li class="active"><%= link_to "Home", root_path %></li>
-        </ul><!-- end nav left -->
+        <a class="navbar-brand" href="/">InSight&trade;</a>
+        <% if logged_in? %>
+          <ul class="nav navbar-nav">
+            <li class="active"><%= link_to "Home", root_path %></li>
+          </ul><!-- end nav left -->
+        <% else %>
+        <% end %>
                    
         <ul class="nav navbar-nav pull-right">
         <% if logged_in? %>
@@ -36,7 +40,9 @@
 						</ul>
           </li>  
         <% else %>
-          <li><%= link_to "Login", login_path %></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
         <% end %>
         </ul><!-- end nav right -->
                    
@@ -59,9 +65,8 @@
       <div class="col-md-6">
         <%= image_tag("Cognizant3.png", alt: "Cognizant Logo", align: "right") %>
       </div>
-      
-      
     </div>  
   </footer>
+  
 </body>
 </html>
