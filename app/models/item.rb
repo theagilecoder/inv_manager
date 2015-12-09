@@ -4,41 +4,43 @@ class Item < ActiveRecord::Base
   before_update :calculate_all_values
   
   validates :user_id, presence: true
-  validates :item_code, presence: true, length: { maximum: 10 }
-  validates :description, presence: true, length: { maximum: 10 }
-=begin  
-  validates :cost, presence: true
+  validates :item_code, presence: true, length: { maximum: 20 }
+  validates :description, presence: true, length: { maximum: 50 }
+  
+  validates :cost, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  
   validates :location, presence: true, length: { maximum: 10 }
   validates :uom, presence: true, length: { maximum: 10 }
-  validates :service_level, presence: true
-  validates :lead_time, presence: true
-  validates :lead_time_variability, presence: true
-  validates :df1, presence: true
-  validates :df2, presence: true
-  validates :df3, presence: true
-  validates :df4, presence: true
-  validates :df5, presence: true
-  validates :df6, presence: true
-  validates :df7, presence: true
-  validates :df8, presence: true
-  validates :df9, presence: true
-  validates :df10, presence: true
-  validates :df11, presence: true
-  validates :df12, presence: true
-  validates :as1, presence: true
-  validates :as2, presence: true
-  validates :as3, presence: true
-  validates :as4, presence: true
-  validates :as5, presence: true
-  validates :as6, presence: true
-  validates :hf1, presence: true
-  validates :hf2, presence: true
-  validates :hf3, presence: true
-  validates :hf4, presence: true
-  validates :hf5, presence: true
-  validates :hf6, presence: true
-  validates :ordered_quantity, presence: true
-  validates :actual_quantity, presence: true
+  validates :service_level, presence: true,  numericality: {greater_than: 0, less_than: 1}
+  validates :lead_time, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :lead_time_variability, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :df1, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :df2, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :df3, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :df4, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :df5, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :df6, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :df7, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :df8, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :df9, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :df10, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :df11, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :df12, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :as1, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :as2, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :as3, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :as4, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :as5, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :as6, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :hf1, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :hf2, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :hf3, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :hf4, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :hf5, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :hf6, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :ordered_quantity, presence: true,  numericality: {greater_than_or_equal_to: 0}
+  validates :actual_quantity, presence: true,  numericality: {greater_than_or_equal_to: 0}
+=begin  
   validates :mape, presence: true
   validates :bias, presence: true
   validates :supply_uncertainty, presence: true
@@ -47,8 +49,7 @@ class Item < ActiveRecord::Base
   validates :safety_stock_1, presence: true
   validates :safety_stock_2, presence: true
   validates :safety_stock_3, presence: true
-=end  
-
+=end
   private
   
   A1 =  -39.6968302866538
