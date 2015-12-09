@@ -1,3 +1,3 @@
 # Introduction
 
-This is a Mini Inventory Management SaaS
+InSight - Inventory Management SaaS on the Cloud
