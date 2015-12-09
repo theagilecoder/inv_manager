@@ -5,9 +5,10 @@
 =================================================-->
 
 
+
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <h3 style="margin-top: 90px">Items</h3>
+    <h3 style="margin-top: 90px">Inventory</h3>
     <% if @user.items.any? %>
       <table class="table table-hover">
         <thead>
@@ -26,6 +27,8 @@
         </tbody>
       </table>
       <%= will_paginate @items %>
+    <% else %>
+      <h5>No items found in inventory. Please create entry from Home page.</h5>
     <% end %>
   </div>
 </div>
