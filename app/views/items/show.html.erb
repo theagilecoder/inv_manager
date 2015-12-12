@@ -105,7 +105,7 @@
         },
         {
             name: 'Weeks of Coverage',
-            data: [<%= @item.safety_stock_1 + 1%>, <%= @item.safety_stock_2 + 1%>, <%= @item.safety_stock_3 - 0.5%>]
+            data: [<%= @item.df1 + @item.df2 + @item.df3 + @item.df4 %>, <%= @item.df5 + @item.df6 + @item.df7 + @item.df8 %>, <%= @item.df9 + @item.df10 + @item.df11 + @item.df12 %>]
         }]
     });
 });
