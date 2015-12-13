@@ -6,4 +6,7 @@ class StaticPagesController < ApplicationController
   def spage2
     @item = current_user.items.build if logged_in? #Build single entry from webform
   end
+  
+  def spage3
+  end
 end

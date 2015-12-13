@@ -46,6 +46,20 @@ class ItemsController < ApplicationController
     end
   end
   
+  #Import from CSV feature
+  def import
+    if current_user.items.import(params[:file]) == false
+      #False encountered means atleast one invalid item
+      flash[:danger] = "Error Encountered. No Items Imported. Please check CSV File."
+      redirect_to spage3_path
+    else 
+      #True means all valid items so save all of them
+      current_user.items.import1(params[:file])
+      flash[:success] = "All Items Imported Successfully."
+      redirect_to spage3_path
+    end
+  end 
+  
   def destroy
     @item.destroy
     flash[:success] = "Item deleted"

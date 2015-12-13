@@ -1,14 +1,16 @@
 class Item < ActiveRecord::Base
+  
+  #RelationShips
   belongs_to :user
+  
+  #Callbacks
   before_create :calculate_all_values
   before_update :calculate_all_values
   
-  validates :user_id, presence: true
+  #Validations
   validates :item_code, presence: true, length: { maximum: 20 }
   validates :description, presence: true, length: { maximum: 50 }
-  
   validates :cost, presence: true,  numericality: {greater_than_or_equal_to: 0}
-  
   validates :location, presence: true, length: { maximum: 10 }
   validates :uom, presence: true, length: { maximum: 10 }
   validates :service_level, presence: true,  numericality: {greater_than: 0, less_than: 1}
@@ -40,16 +42,27 @@ class Item < ActiveRecord::Base
   validates :hf6, presence: true,  numericality: {greater_than_or_equal_to: 0}
   validates :ordered_quantity, presence: true,  numericality: {greater_than_or_equal_to: 0}
   validates :actual_quantity, presence: true,  numericality: {greater_than_or_equal_to: 0}
-=begin  
-  validates :mape, presence: true
-  validates :bias, presence: true
-  validates :supply_uncertainty, presence: true
-  validates :transit_time_variability, presence: true
-  validates :safety_stock, presence: true
-  validates :safety_stock_1, presence: true
-  validates :safety_stock_2, presence: true
-  validates :safety_stock_3, presence: true
-=end
+
+  #Check if all items in CSV are valid
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      item = Item.new(row.to_hash)
+      # exit from the block if item is not valid
+      return false unless item.valid?
+    end  
+  end
+   
+  #If ALL items in CSV are valid, save all of them
+  def self.import1(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      item = Item.new(row.to_hash)
+      # exit from the block if item is not valid
+      return false unless item.valid?
+      # save the item only if is valid
+      item.save
+    end  
+  end
+
   private
   
   A1 =  -39.6968302866538
