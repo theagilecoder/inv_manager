@@ -1,2 +1,0 @@
-item_code,description,cost,location,uom,service_level,lead_time,lead_time_variability,df1,df2,df3,df4,df5,df6,df7,df8,df9,df10,df11,df12,as1,as2,as3,as4,as5,as6,hf1,hf2,hf3,hf4,hf5,hf6,ordered_quantity,actual_quantity
-1-0-123,TestCSV1,1.11,DC1,lbs,1.83,20,2,5,5,5,5,5,5,5,5,5,5,5,5,2,2,2,2,2,2,3,3,3,3,3,3,500,600
