@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require highcharts
 //= require highcharts/highcharts-more
+//= require highcharts/modules/drilldown
 //= require nprogress
 //= require nprogress-turbolinks
 //= require_tree .
