@@ -82,13 +82,17 @@
 $(function () {
     $('#chart17').highcharts({
         chart: {
-            type: 'bar'
+            type: 'column'
         },
         title: {
-            text: 'Safety Stock Monetary Values (in $)'
+            text: 'Safety Stock Monetary Values'
+        },
+        subtitle: {
+            text: 'In Dollars ($)'
         },
         xAxis: {
-            categories: ['Using MAPE', 'Using RMSE', 'Weeks of Coverage']
+            categories: ['Week 1-4', 'Week 5-8', 'Week 9-12'],
+            crosshair: true
         },
         yAxis: {
             min: 0,
@@ -96,23 +100,35 @@ $(function () {
                 text: 'In Dollars ($)'
             }
         },
-        legend: {
-            reversed: true
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} $</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
         },
         plotOptions: {
-            series: {
-                stacking: 'normal'
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true
+                }
             }
         },
         series: [{
-            name: 'Week 9-12',
-            data: [<%= @item.safety_stock_3 * @item.cost %>, <%= @item.safety_stock_3 * @item.cost * 0.8 %>, <%= (@item.df9 + @item.df10 + @item.df11 + @item.df12) * @item.cost %>]
+            name: 'Using Mape%',
+            data: [<%= (@item.safety_stock_1 * @item.cost).round(1) %>, <%= (@item.safety_stock_2 * @item.cost).round(1) %>, <%= (@item.safety_stock_3 * @item.cost).round(1) %>]
+
         }, {
-            name: 'Week 5-8',
-            data: [<%= @item.safety_stock_2 * @item.cost %>, <%= @item.safety_stock_2 * @item.cost * 0.8 %>, <%= (@item.df5 + @item.df6 + @item.df7 + @item.df8) * @item.cost %>]
+            name: 'Using RMSE%',
+            data: [<%= (@item.safety_stock_1 * @item.cost * 0.8).round(1) %>, <%= (@item.safety_stock_2 * @item.cost * 0.8).round(1) %>, <%= (@item.safety_stock_3 * @item.cost * 0.8).round(1) %>]
+
         }, {
-            name: 'Week 1-4',
-            data: [<%= @item.safety_stock_1 * @item.cost %>, <%= @item.safety_stock_1 * @item.cost * 0.8 %>, <%= (@item.df1 + @item.df2 + @item.df3 + @item.df4) * @item.cost %>]
+            name: 'Weeks of Coverage',
+            data: [<%= ((@item.df1 + @item.df2 + @item.df3 + @item.df4) * @item.cost).round(1) %>, <%= ((@item.df5 + @item.df6 + @item.df7 + @item.df8) * @item.cost).round(1) %>, <%= ((@item.df9 + @item.df10 + @item.df11 + @item.df12) * @item.cost).round(1) %>]
+
         }]
     });
 });
@@ -172,30 +188,51 @@ $(function () {
 
 $(function () {
     $('#chart20').highcharts({
+        chart: {
+            type: 'areaspline'
+        },
         title: {
-            text: 'Demand Forecast',
-            x: -20 //center
+            text: 'Demand Forecast'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            verticalAlign: 'top',
+            x: 550,
+            y: 300,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
         },
         xAxis: {
             categories: ['Week1', 'Week2', 'Week3', 'Week4', 'Week5', 'Week6',
                 'Week7', 'Week8', 'Week9', 'Week10', 'Week11', 'Week12']
+
         },
         yAxis: {
             title: {
                 text: 'Measured in <%= @item.uom %>'
-            },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
+            }
         },
         tooltip: {
-            valueSuffix: '<%= @item.uom %>'
+            shared: true,
+            valueSuffix: ' <%= @item.uom %>'
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            areaspline: {
+                fillOpacity: 0.5,
+                dataLabels: {
+                    enabled: true
+                }
+            }
         },
         series: [{
             name: 'Item Code: <%= @item.item_code %>',
-            data: [<%= @item.df1 %>, <%= @item.df2 %>, <%= @item.df3 %>, <%= @item.df4 %>, <%= @item.df5 %>, <%= @item.df6 %>, <%= @item.df7 %>, <%= @item.df8 %>, <%= @item.df9 %>, <%= @item.df10 %>, <%= @item.df11 %>, <%= @item.df12 %>]
+            data: [<%= @item.df1 %>, <%= @item.df2 %>, <%= @item.df3 %>, <%= @item.df4 %>, <%= @item.df5 %>, <%= @item.df6 %>, <%= @item.df7 %>, <%= @item.df8 %>, <%= @item.df9 %>, <%= @item.df10 %>, <%= @item.df11 %>, <%= @item.df12 %>,],
+            color: '#2b908f'
         }]
     });
 });
@@ -209,11 +246,19 @@ $(function () {
             text: 'Forecast Accuracy Trend (in %)'
         },
         xAxis: {
-            categories: ['Week1', 'Week2', 'Week3', 'Week4', 'Week5', 'Week6']
+            categories: ['Month1', 'Month2', 'Month3', 'Month4', 'Month5', 'Month6']
         },
         yAxis: {
             title: {
-                text: 'Measured in Percentages'
+                text: 'Measured in Percentages (%)'
+            }
+        },
+        plotOptions: {
+            column: {
+                fillOpacity: 0.5,
+                dataLabels: {
+                    enabled: true
+                }
             }
         },
         credits: {
@@ -221,14 +266,11 @@ $(function () {
         },
         series: [{
             name: 'Item Code: <%= @item.item_code %>',
-            data: [<%= ((@item.hf1-@item.as1)/@item.as1).round(3)*100 %>, <%= ((@item.hf2-@item.as2)/@item.as2).round(3)*100 %>, <%= ((@item.hf3-@item.as3)/@item.as3).round(3)*100 %>, <%= ((@item.hf4-@item.as4)/@item.as4).round(3)*100 %>, <%= ((@item.hf5-@item.as5)/@item.as5).round(3)*100 %>, <%= ((@item.hf6-@item.as6)/@item.as6).round(3)*100 %>]
+            data: [<%= ((@item.hf1-@item.as1)/@item.as1).round(3)*100 %>, <%= ((@item.hf2-@item.as2)/@item.as2).round(3)*100 %>, <%= ((@item.hf3-@item.as3)/@item.as3).round(3)*100 %>, <%= ((@item.hf4-@item.as4)/@item.as4).round(3)*100 %>, <%= ((@item.hf5-@item.as5)/@item.as5).round(3)*100 %>, <%= ((@item.hf6-@item.as6)/@item.as6).round(3)*100 %>],
+            color: '#f7a35c'
         }]
     });
 });
-
-
-
-
 
 $(function () {
     $('#chart18').highcharts({
@@ -258,14 +300,15 @@ $(function () {
             }
         },
         series: [{
-            name: "Brands",
+            name: "%",
             colorByPoint: true,
             data: [{
                 name: "Attainment",
-                y: <%= if ((@item.hf1+@item.hf2+@item.hf3+@item.hf4+@item.hf5+@item.hf6)/(@item.as1+@item.as2+@item.as3+@item.as4+@item.as5+@item.as6)) < 1 then ((@item.hf1+@item.hf2+@item.hf3+@item.hf4+@item.hf5+@item.hf6)/(@item.as1+@item.as2+@item.as3+@item.as4+@item.as5+@item.as6)).round(4)*100 else 100 end %> 
+                <% fa = (@item.hf1+@item.hf2+@item.hf3+@item.hf4+@item.hf5+@item.hf6)/(@item.as1+@item.as2+@item.as3+@item.as4+@item.as5+@item.as6).to_f %>
+                y: <%= if fa < 1 then fa.round(2)*100 else 100 end %> 
             }, {
-                name: "Loss",
-                y: <%= if ((@item.hf1+@item.hf2+@item.hf3+@item.hf4+@item.hf5+@item.hf6)/(@item.as1+@item.as2+@item.as3+@item.as4+@item.as5+@item.as6)) < 1 then ((@item.hf1+@item.hf2+@item.hf3+@item.hf4+@item.hf5+@item.hf6)/(@item.as1+@item.as2+@item.as3+@item.as4+@item.as5+@item.as6)).round(4)*100 - 1 else 0 end %>,
+                name: "ShortFall",
+                y: <%= if fa < 1 then 100 - fa.round(2)*100 else 0 end %>,
                 sliced: true,
                 selected: true
             }]
@@ -276,10 +319,28 @@ $(function () {
 $(function () {
     $('#chart3').highcharts({
         chart: {
-            type: 'line'
+            type: 'area',
+            spacingBottom: 30
         },
         title: {
             text: 'Historical Forecast vs Sales'
+        },
+        subtitle: {
+            text: '* Data for past 6 months',
+            floating: true,
+            align: 'right',
+            verticalAlign: 'bottom',
+            y: 15
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            verticalAlign: 'top',
+            x: 75,
+            y: 0,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
         },
         xAxis: {
             categories: ['Month1', 'Month2', 'Month3', 'Month4', 'Month5', 'Month6']
@@ -287,19 +348,31 @@ $(function () {
         yAxis: {
             title: {
                 text: 'Measured in <%= @item.uom %>'
+            },
+            labels: {
+                formatter: function () {
+                    return this.value;
+                }
+            }
+        },
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.series.name + '</b><br/>' +
+                    this.x + ': ' + this.y;
             }
         },
         plotOptions: {
-            line: {
-                dataLabels: {
-                    enabled: true
-                },
-                enableMouseTracking: false
+            area: {
+                fillOpacity: 0.5
             }
+        },
+        credits: {
+            enabled: false
         },
         series: [{
             name: 'Sales',
-            data: [<%= @item.as1 %>, <%= @item.as2 %>, <%= @item.as3 %>, <%= @item.as4 %>, <%= @item.as5 %>, <%= @item.as6 %>]
+            data: [<%= @item.as1 %>, <%= @item.as2 %>, <%= @item.as3 %>, <%= @item.as4 %>, <%= @item.as5 %>, <%= @item.as6 %>],
+            color: '#90ed7d'
         }, {
             name: 'Historical Forecast',
             data: [<%= @item.hf1 %>, <%= @item.hf2 %>, <%= @item.hf3 %>, <%= @item.hf4 %>, <%= @item.hf5 %>, <%= @item.hf6 %>]
@@ -317,42 +390,40 @@ $(function () {
 <hr style="margin-top: 0">
 
 <div class="row">
-  
+  <div class="col-md-4">
+    <div class="input-group">
+      <span class="input-group-addon" ><span class="glyphicon glyphicon-info-sign"></span></span>
+      <input class="form-control" type="text" value="Root Mean Square Error : <%= @item.mape * 0.5 * 100 %> %" readonly/>
+    </div>    
+  </div>
+  <div class="col-md-4">
+    <div class="input-group">
+      <span class="input-group-addon" ><span class="glyphicon glyphicon-info-sign"></span></span>
+      <input class="form-control" type="text" value="Mean Absolute Percentage Error : <%= @item.mape * 100 %> %" readonly/>
+    </div>    
+  </div>
+  <div class="col-md-4">
+    <div class="input-group">
+      <span class="input-group-addon" ><span class="glyphicon glyphicon-info-sign"></span></span>
+      <input class="form-control" type="text" value="Forecast BIAS : <%= @item.bias * 100%> %" readonly/>
+    </div>  
+  </div>
+</div>
+
+<div class="row" style="margin-top: 50px">
   <div class="col-md-6">
     <div id="chart19" style="width:100%; height:400px;">Hi</div>
   </div>
   
   <div class="col-md-6">
-    <div id="chart3" style="width:100%; height:400px;">Hi</div>
+    <div id="chart18" style="width:100%; height:400px;"></div>
   </div>
-  
 </div>
 
 <br>
 
 <div class="row">
-  
-  <div class="col-md-6">
-    <div id="chart18" style="width:100%; height:400px;">Hi</div>
-  </div>
-  
-  <div class="col-md-6">
-    <div class="input-group" style="margin-top: 100px">
-      <span class="input-group-addon" ><span class="glyphicon glyphicon-info-sign"></span></span>
-      <input class="form-control" type="text" style="font-weight: bold" value="RMSE : <%= @item.mape + 1 %>" readonly/>
-    </div>
-    <br>
-    <div class="input-group">
-      <span class="input-group-addon" ><span class="glyphicon glyphicon-info-sign"></span></span>
-      <input class="form-control" type="text" style="font-weight: bold" value="MAPE : <%= @item.mape %>" readonly/>
-    </div>
-    <br>
-    <div class="input-group">
-      <span class="input-group-addon" ><span class="glyphicon glyphicon-info-sign"></span></span>
-      <input class="form-control" type="text" style="font-weight: bold" value="BIAS : <%= @item.bias %>" readonly/>
-    </div>
-  </div>
-  
+    <div id="chart3" style="width:100%; height:400px;"></div>
 </div>
 
 <!--Safety Stock Analysis-->
@@ -360,9 +431,10 @@ $(function () {
 <h3 style="margin-top: 50px">Safety Stock Analysis</h3>
 <hr style="margin-top: 0"> 
   <div class="row">
+    <div class="col-md-7">
       <div id="chart1" style="width:100%; height:400px;"></div>
-  </div>
-  <br>
-  <div class="row">
+    </div>
+    <div class="col-md-5">
       <div id="chart17" style="width:100%; height:400px;"></div>
+    </div>
   </div>
