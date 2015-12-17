@@ -39,7 +39,7 @@
   <div class="col-md-6">
     <div class="input-group">
       <span class="input-group-addon" ><span class="glyphicon glyphicon-usd"></span></span>
-      <input class="form-control" type="text" value="Item Cost : $ <%= @item.cost %>" readonly/>
+      <input class="form-control" type="text" value="Item Cost : $ <%= @item.cost.round(2) %>" readonly/>
     </div>
   </div>
   <div class="col-md-6">
@@ -85,7 +85,7 @@ $(function () {
             type: 'column'
         },
         title: {
-            text: 'Safety Stock Monetary Values'
+            text: 'Safety Stock'
         },
         subtitle: {
             text: 'In Dollars ($)'
@@ -119,15 +119,15 @@ $(function () {
         },
         series: [{
             name: 'Using Mape%',
-            data: [<%= (@item.safety_stock_1 * @item.cost).round(1) %>, <%= (@item.safety_stock_2 * @item.cost).round(1) %>, <%= (@item.safety_stock_3 * @item.cost).round(1) %>]
+            data: [<%= (@item.safety_stock_1 * @item.cost).round(2) %>, <%= (@item.safety_stock_2 * @item.cost).round(2) %>, <%= (@item.safety_stock_3 * @item.cost).round(2) %>]
 
         }, {
             name: 'Using RMSE%',
-            data: [<%= (@item.safety_stock_1 * @item.cost * 0.8).round(1) %>, <%= (@item.safety_stock_2 * @item.cost * 0.8).round(1) %>, <%= (@item.safety_stock_3 * @item.cost * 0.8).round(1) %>]
+            data: [<%= (@item.safety_stock_1 * @item.cost * 0.8).round(2) %>, <%= (@item.safety_stock_2 * @item.cost * 0.8).round(2) %>, <%= (@item.safety_stock_3 * @item.cost * 0.8).round(2) %>]
 
         }, {
             name: 'Weeks of Coverage',
-            data: [<%= ((@item.df1 + @item.df2 + @item.df3 + @item.df4) * @item.cost).round(1) %>, <%= ((@item.df5 + @item.df6 + @item.df7 + @item.df8) * @item.cost).round(1) %>, <%= ((@item.df9 + @item.df10 + @item.df11 + @item.df12) * @item.cost).round(1) %>]
+            data: [<%= ((@item.df1 + @item.df2 + @item.df3 + @item.df4) * @item.cost).round(2) %>, <%= ((@item.df5 + @item.df6 + @item.df7 + @item.df8) * @item.cost).round(2) %>, <%= ((@item.df9 + @item.df10 + @item.df11 + @item.df12) * @item.cost).round(2) %>]
 
         }]
     });
@@ -173,11 +173,11 @@ $(function () {
         },
         series: [{
             name: 'Using MAPE %',
-            data: [<%= @item.safety_stock_1 %>, <%= @item.safety_stock_2 %>, <%= @item.safety_stock_3 %>]
+            data: [<%= @item.safety_stock_1.round(2) %>, <%= @item.safety_stock_2.round(2) %>, <%= @item.safety_stock_3.round(2) %>]
         },
         {
             name: 'Using RMSE %',
-            data: [<%= @item.safety_stock_1 + 2 %>, <%= @item.safety_stock_2 + 2 %>, <%= @item.safety_stock_3 + 4 %>]
+            data: [<%= @item.safety_stock_1.round(2) + 2 %>, <%= @item.safety_stock_2.round(2) + 2 %>, <%= @item.safety_stock_3.round(2) + 4 %>]
         },
         {
             name: 'Weeks of Coverage',
@@ -266,7 +266,7 @@ $(function () {
         },
         series: [{
             name: 'Item Code: <%= @item.item_code %>',
-            data: [<%= ((@item.hf1-@item.as1)/@item.as1).round(3)*100 %>, <%= ((@item.hf2-@item.as2)/@item.as2).round(3)*100 %>, <%= ((@item.hf3-@item.as3)/@item.as3).round(3)*100 %>, <%= ((@item.hf4-@item.as4)/@item.as4).round(3)*100 %>, <%= ((@item.hf5-@item.as5)/@item.as5).round(3)*100 %>, <%= ((@item.hf6-@item.as6)/@item.as6).round(3)*100 %>],
+            data: [<%= ((@item.hf1-@item.as1)/@item.as1).round(4)*100 %>, <%= ((@item.hf2-@item.as2)/@item.as2).round(4)*100 %>, <%= ((@item.hf3-@item.as3)/@item.as3).round(4)*100 %>, <%= ((@item.hf4-@item.as4)/@item.as4).round(4)*100 %>, <%= ((@item.hf5-@item.as5)/@item.as5).round(4)*100 %>, <%= ((@item.hf6-@item.as6)/@item.as6).round(4)*100 %>],
             color: '#f7a35c'
         }]
     });
